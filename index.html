@@ -1,0 +1,100 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#128C7E">
+<title>Voice Chat Pro</title>
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- Login & Registration Screen -->
+<div id="loginScreen" class="screen">
+  <div class="auth-card">
+    <div class="app-logo">☎</div>
+    <h1>Voice Chat Pro</h1>
+    <p id="authModeTitle">Apne Email & Password se Login karein</p>
+    
+    <input id="emailInput" type="email" placeholder="Email address" autocomplete="email">
+    <input id="passwordInput" type="password" placeholder="Password" autocomplete="current-password">
+    
+    <!-- Phone number field for profile setup -->
+    <div id="phoneFieldBox" class="hidden">
+      <input id="regPhoneInput" type="tel" placeholder="Phone number (e.g. +923001234567)" autocomplete="tel">
+      <input id="regNameInput" type="text" placeholder="Aap ka naam (Display Name)">
+    </div>
+
+    <button id="authActionBtn" class="primary">Login</button>
+    <button id="switchAuthModeBtn" class="link-btn">Account nahi hai? Register karein</button>
+    <p id="authStatus" class="status"></p>
+  </div>
+</div>
+
+<!-- Main App Screen -->
+<div id="appScreen" class="app hidden">
+  <aside class="sidebar">
+    <div class="brand"><div class="logo">☎</div><div><b>Voice Chat Pro</b><small>Connect & Chat</small></div></div>
+    <div class="profile"><div class="avatar" id="myAvatar">P</div><div><b id="myName">My Profile</b><small id="myNumber">—</small></div></div>
+    <div class="side-buttons">
+      <button class="active" data-panel="chats">💬 Chats</button>
+      <button data-panel="contacts">👤 Contacts</button>
+      <button data-panel="groups">👥 Groups</button>
+    </div>
+    <div class="sidebar-bottom">
+      <button id="addNumberBtn">➕ Chat by Number</button>
+      <button id="newGroupBtn">👥 New Group</button>
+      <button id="logoutBtn">🚪 Logout</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="mobile-brand">Voice Chat Pro</div>
+      <div class="search"><span>🔍</span><input id="search" placeholder="Search chats or contacts"></div>
+      <button id="profileBtn" class="icon-btn" title="Edit Profile">⚙️</button>
+    </header>
+
+    <section id="homePanel" class="panel active-panel">
+      <div class="empty">
+        <div class="big-logo">☎</div>
+        <h1>Voice Chat Pro</h1>
+        <p>Number ya Chat select kar ke baat shuru karein.</p>
+        <button class="primary" id="startChatBtn">Start New Chat</button>
+      </div>
+    </section>
+
+    <section id="listPanel" class="panel hidden">
+      <div class="panel-head"><h2 id="panelTitle">Chats</h2><button id="panelAction" class="primary">＋</button></div>
+      <div id="listItems" class="list-items"></div>
+    </section>
+
+    <section id="chat" class="chat hidden">
+      <header class="chat-head">
+        <button id="backBtn" class="back">←</button>
+        <div class="avatar" id="chatAvatar">A</div>
+        <div class="chat-title"><b id="chatName">Contact</b><small id="chatStatus">Online</small></div>
+        <button id="callBtn" class="icon-btn" title="Live voice call">📞</button>
+        <button id="chatMenuBtn" class="icon-btn">⋮</button>
+      </header>
+      <div id="messages" class="messages"></div>
+      <div class="composer">
+        <button class="icon-btn" id="emojiBtn">😊</button>
+        <input id="messageInput" placeholder="Write a message..." autocomplete="off">
+        <button class="icon-btn" id="micBtn" title="Record voice message">🎤</button>
+        <button class="send" id="sendBtn">➤</button>
+      </div>
+      <div id="recording" class="recording hidden">🔴 Recording... <span id="timer">0:00</span> <button id="stopRecord">Stop</button></div>
+    </section>
+  </main>
+</div>
+
+<!-- Modals -->
+<div class="modal hidden" id="numberModal"><div class="modal-card"><button class="close" data-close="numberModal">×</button><h2>Chat by Number</h2><p>Pakistan number +92 ke sath enter karein.</p><input id="numberInput" type="tel" placeholder="+923001234567"><input id="nameInput" placeholder="Contact name (optional)"><button class="primary" id="createChat">Start Chat</button><p id="numberStatus" class="status"></p></div></div>
+<div class="modal hidden" id="groupModal"><div class="modal-card"><button class="close" data-close="groupModal">×</button><h2>Create Group</h2><input id="groupName" placeholder="Group name"><textarea id="groupMembers" placeholder="Member phone numbers, comma separated"></textarea><button class="primary" id="createGroup">Create Group</button><p id="groupStatus" class="status"></p></div></div>
+<div class="modal hidden" id="profileModal"><div class="modal-card"><button class="close" data-close="profileModal">×</button><h2>My Profile</h2><input id="profileNameInput" placeholder="Your name"><input id="profilePhoneInput" placeholder="Phone number"><button class="primary" id="saveProfile">Save Changes</button></div></div>
+<div id="toast" class="toast"></div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
